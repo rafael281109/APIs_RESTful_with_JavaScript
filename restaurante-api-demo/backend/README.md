@@ -65,10 +65,12 @@ O servidor estará rodando em: **http://localhost:4000**
 
 ### 📋 Cardápio
 - **GET** `/api/cardapio` - Retorna todos os itens do menu
+- **GET** `/api/cardapio/:id` - Retorna um item específico
 
 ### 📝 Comandas (Pedidos)
 - **GET** `/api/comandas` - Lista todas as comandas
 - **POST** `/api/comandas` - Cria uma nova comanda
+- **PATCH** `/api/comandas/:id` - Atualiza o status de uma comanda
 
 ---
 

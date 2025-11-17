@@ -22,5 +22,8 @@ router.get('/comandas', comandasController.getComandas);
 // POST /api/comandas - Cria uma nova comanda
 router.post('/comandas', comandasController.createComanda);
 
+// PATCH /api/comandas/:id - Atualiza o status de uma comanda
+router.patch('/comandas/:id', comandasController.updateComandaStatus);
+
 // Exporta o router para ser usado no server.js
 module.exports = router;

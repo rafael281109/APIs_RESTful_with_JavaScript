@@ -100,3 +100,60 @@ describe('POST /api/comandas', () => {
     expect(response.body).toHaveProperty('sucesso', false);
   });
 });
+
+// ========== TESTES DE ATUALIZAÇÃO DE COMANDAS (TDD - PATCH) ==========
+describe('PATCH /api/comandas/:id', () => {
+  // Limpa as comandas antes de cada teste deste bloco
+  beforeEach(() => {
+    resetComandas();
+  });
+
+  it('deve atualizar o status de uma comanda existente', async () => {
+    // 1. Criar uma comanda para poder atualizá-la
+    const newComandaRes = await request(app)
+      .post('/api/comandas')
+      .send({ mesa: 'Mesa 10', itens: [1], total: 25 });
+    
+    const comandaCriada = newComandaRes.body.dados;
+    const comandaId = comandaCriada.id;
+
+    // 2. Tentar atualizar o status daquela comanda
+    const novoStatus = { status: 'Em Preparo' };
+    const updateRes = await request(app)
+      .patch(`/api/comandas/${comandaId}`)
+      .send(novoStatus);
+
+    // 3. Verificar o resultado
+    expect(updateRes.status).toBe(200);
+    expect(updateRes.body).toHaveProperty('id', comandaId);
+    expect(updateRes.body).toHaveProperty('status', 'Em Preparo'); // O status deve ter mudado
+    expect(updateRes.body).toHaveProperty('mesa', 'Mesa 10'); // O resto deve continuar igual
+  });
+
+  it('deve retornar 404 se a comanda não existir', async () => {
+    const novoStatus = { status: 'Em Preparo' };
+    const response = await request(app)
+      .patch('/api/comandas/999') // ID que não existe
+      .send(novoStatus);
+
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty('sucesso', false);
+  });
+
+  it('deve permitir atualizar para diferentes status', async () => {
+    // Criar uma comanda
+    const newComandaRes = await request(app)
+      .post('/api/comandas')
+      .send({ mesa: 'Mesa 15', itens: [2, 3], total: 53 });
+    
+    const comandaId = newComandaRes.body.dados.id;
+
+    // Atualizar para "Pronto"
+    const updateRes = await request(app)
+      .patch(`/api/comandas/${comandaId}`)
+      .send({ status: 'Pronto' });
+
+    expect(updateRes.status).toBe(200);
+    expect(updateRes.body.status).toBe('Pronto');
+  });
+});

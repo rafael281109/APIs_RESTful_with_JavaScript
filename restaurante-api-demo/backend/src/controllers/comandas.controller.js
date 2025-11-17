@@ -64,8 +64,51 @@ const createComanda = (req, res) => {
   }
 };
 
+// Função para atualizar o status de uma comanda (PATCH)
+// Permite mudar o status de um pedido (ex: pendente → Em Preparo → Pronto)
+const updateComandaStatus = (req, res) => {
+  try {
+    const { id } = req.params; // Pega o ID da URL
+    const { status } = req.body; // Pega o novo status do corpo da requisição
+
+    // Validação: verifica se o status foi enviado
+    if (!status) {
+      return res.status(400).json({
+        sucesso: false,
+        mensagem: 'Status é obrigatório para atualizar a comanda'
+      });
+    }
+
+    // Encontra o índice da comanda no array
+    // Usamos == (comparação fraca) para permitir '1' == 1
+    const comandaIndex = comandas.findIndex(c => c.id == id);
+
+    // Se não encontrar (índice -1), retorna 404
+    if (comandaIndex === -1) {
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Comanda não encontrada.'
+      });
+    }
+
+    // Atualiza o status da comanda encontrada
+    comandas[comandaIndex].status = status;
+
+    // Retorna a comanda inteira atualizada com status 200 (OK)
+    return res.status(200).json(comandas[comandaIndex]);
+
+  } catch (error) {
+    return res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro ao atualizar comanda',
+      erro: error.message
+    });
+  }
+};
+
 // Exporta as funções para serem usadas nas rotas
 module.exports = {
   getComandas,
-  createComanda
+  createComanda,
+  updateComandaStatus // <-- Nova função adicionada
 };

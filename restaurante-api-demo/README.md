@@ -52,11 +52,12 @@ Abra o navegador em `http://localhost:5173` e você verá o cardápio sendo exib
 ## 📡 Endpoints da API (Back-end)
 
 | Método | Endpoint | Descrição |
-|--------|----------|-----------|
+|--------|----------|--------|
 | GET | `/api/cardapio` | Retorna todo o cardápio |
 | GET | `/api/cardapio/:id` | Retorna um item específico |
 | GET | `/api/comandas` | Lista todas as comandas |
 | POST | `/api/comandas` | Cria uma nova comanda |
+| PATCH | `/api/comandas/:id` | Atualiza o status de uma comanda |
 
 ## 🧪 Testando a API
 
@@ -112,19 +113,26 @@ npm test
 - Limpeza do carrinho após envio
 - Validações e feedback ao usuário
 
-### ✅ Passo 2.3: Front-end (Painel da Cozinha) - Completo!
+### ✅ Passo 2.3: Front-end (Painel da Cozinha)
 - Componente PainelCozinha para listar pedidos
 - Atualização automática via prop refreshTrigger
 - Exibição de todos os detalhes do pedido
 - Design escuro para simular ambiente de cozinha
 - Grid responsivo com scroll customizado
 
-### 🔜 Passo 2.4: Melhorias e Funcionalidades Extras - Próxima Etapa
-- Gerenciamento de status do pedido
-- Seleção dinâmica de mesa
-- Remover itens do carrinho
-- Filtros e busca no cardápio
-- Sistema de notificações
+### ✅ Passo 3.0: Back-end (TDD - Update de Comandas) - Completo!
+- Testes escritos primeiro (Fase RED)
+- Endpoint PATCH /api/comandas/:id implementado
+- Função updateComandaStatus no controlador
+- Todos os testes passando (Fase GREEN)
+- Validação de dados e erro 404
+- 10 testes no total (3 novos)
+
+### 🔜 Passo 3.1: Front-end (Botões de Status) - Próxima Etapa
+- Adicionar botões para mudar status no painel
+- Integrar com endpoint PATCH
+- Atualização visual ao mudar status
+- Diferentes cores para diferentes status
 
 ## 🔗 Fluxo de Comunicação
 
