@@ -162,12 +162,3 @@ Permite que o front-end (porta 3000) se comunique com o back-end (porta 4000).
 
 ---
 
-## 📝 Próximos Passos (Passo 2)
-
-- [ ] Criar o Front-end (interface visual)
-- [ ] Conectar Front-end com esta API
-- [ ] Implementar interface para visualizar cardápio
-- [ ] Implementar interface para fazer pedidos
-
----
-
