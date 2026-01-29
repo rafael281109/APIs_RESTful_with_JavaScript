@@ -28,13 +28,7 @@ const createComanda = (req, res) => {
     // Extrai os dados enviados pelo cliente
     const { mesa, itens, total } = req.body;
 
-    // Validação básica: verifica se todos os campos obrigatórios foram enviados
-    if (!mesa || !itens || !total) {
-      return res.status(400).json({
-        sucesso: false,
-        mensagem: 'Dados incompletos. Envie: mesa, itens e total'
-      });
-    }
+    // total = total * 1.10;
 
     // Cria um novo objeto de comanda
     const novaComanda = {
@@ -42,7 +36,7 @@ const createComanda = (req, res) => {
       mesa,
       itens,
       total,
-      status: 'pendente',
+      status: 'concluido',
       dataPedido: new Date().toISOString()
     };
 

@@ -11,7 +11,9 @@ function App() {
   // Estado para erros
   const [error, setError] = useState(null);
   // Estado para a comanda (carrinho de pedidos)
-  const [comanda, setComanda] = useState([]);
+  const [comanda, setComanda] = useState([
+    { nome: "Energético", preco: 0 }
+  ]);
   // Estado para controlar atualização do Painel da Cozinha (gatilho)
   const [refreshPedidos, setRefreshPedidos] = useState(0);
 
@@ -51,15 +53,15 @@ function App() {
 
   // Função para calcular o total da comanda
   const calcularTotalComanda = () => {
-    return comanda.reduce((total, item) => total + item.preco, 0);
+    return comanda.reduce((total, item) => total + item.preco + (total*0.10), 0);
   };
 
   // Função para ENVIAR o pedido para o back-end
   const handleFazerPedido = async () => {
-    if (comanda.length === 0) {
-      alert('Sua comanda está vazia!');
-      return;
-    }
+    // if (comanda.length === 0) {
+    //   alert('Sua comanda está vazia!');
+    //   return;
+    // }
 
     const dadosDoPedido = {
       mesa: 'Mesa 5', // Podemos deixar fixo por enquanto
@@ -70,7 +72,7 @@ function App() {
     try {
       const response = await createComanda(dadosDoPedido);
       console.log('✅ Pedido enviado com sucesso!', response.data);
-      alert(`✅ Pedido #${response.data.dados.id} enviado para a cozinha!`);
+      alert(`✅ Pedido #${response.data.dados.id} está chegando na casa de João!`);
       setComanda([]); // Limpa o carrinho
       
       // ATUALIZA A LISTA DE PEDIDOS NO PAINEL DA COZINHA
@@ -118,7 +120,9 @@ function App() {
             <p className="descricao">{item.descricao}</p>
             <p className="preco">R$ {item.preco.toFixed(2)}</p>
             {/* Botão para adicionar item à comanda */}
-            <button onClick={() => handleAddItemComanda(item)}>
+            <button 
+            // onClick={() => handleAddItemComanda(item)} 
+            style={{color: 'red'}}>
               ➕ Adicionar ao Pedido
             </button>
           </div>
@@ -130,7 +134,7 @@ function App() {
 
       {/* SEÇÃO DA COMANDA (CARRINHO) */}
       <div className="comanda-secao">
-        <h2>🛒 Sua Comanda (Carrinho)</h2>
+        <h4>🛒 Sua Comanda (Carrinho)</h4>
         <div className="comanda-lista">
           {comanda.length === 0 ? (
             <p className="comanda-vazia">Seu carrinho está vazio. Adicione itens do cardápio!</p>
@@ -150,7 +154,7 @@ function App() {
         <button
           className="btn-fazer-pedido"
           onClick={handleFazerPedido}
-          disabled={comanda.length === 0}
+          // disabled={comanda.length === 0}
         >
           🍽️ Fazer Pedido
         </button>
