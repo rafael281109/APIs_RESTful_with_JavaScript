@@ -210,7 +210,7 @@ function App() {
             <div key={item.id} className="cardapio-item">
               <h2>{item.nome}</h2>
               <p className="descricao">{item.descricao}</p>
-              <p className="preco">R$ {item.preco.toFixed(2)}</p>
+              <p className="preco">R$ {item.preco}</p>
               
               {/* Controle de quantidade para cada produto */}
               <div className="controle-quantidade">
