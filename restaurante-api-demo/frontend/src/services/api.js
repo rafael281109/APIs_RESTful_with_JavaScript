@@ -45,3 +45,4 @@ export const deleteComanda = (id) => {
   // Faz o DELETE para /api/comandas/:id
   return api.delete(`/comandas/${id}`);
 };
+
