@@ -9,7 +9,7 @@ const comandasController = require('../controllers/comandas.controller');
 // ========== ROTAS DO CARDÁPIO ==========
 
 // GET /api/cardapio - Retorna todo o cardápio
-router.get('/cardapio', cardapioController.listarCardapio);
+router.get('/cardapio', cardapioController.listarcardapio);
 
 // Se você tiver a função getCardapioItem no controller, descomente abaixo:
 // router.get('/cardapio/:id', cardapioController.getCardapioItem);
