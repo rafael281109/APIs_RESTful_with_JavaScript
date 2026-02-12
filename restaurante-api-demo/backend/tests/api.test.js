@@ -162,7 +162,6 @@ describe('🚀 Regras de Negócio (TDD - Cenários Futuros)', () => {
   });
 });
 
-
 // // Testes da API do Restaurante
 // // Testando os endpoints existentes (testes de regressão)
 
