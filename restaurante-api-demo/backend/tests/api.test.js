@@ -10,9 +10,9 @@ const { resetComandas } = require('../src/services/database_mock.js'); // Import
 // HOOK GLOBAL
 // beforeAll pode ser usado para subir banco, etc.
 // beforeEach roda ANTES de cada 'it' ou 'test'.
-beforeEach(() => {
-  resetComandas(); // Zera o "banco de dados" na memória para evitar sujeira de um teste afetar outro
-});
+//beforeEach(() => {
+  //resetComandas(); // Zera o "banco de dados" na memória para evitar sujeira de um teste afetar outro
+//});
 
 // ==================================================================
 // GRUPO 1: CARDÁPIO (Apenas Leitura)
