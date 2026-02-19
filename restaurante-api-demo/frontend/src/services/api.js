@@ -9,6 +9,7 @@ const api = axios.create({
   baseURL: baseURL, // A porta do nosso back-end
 });
 
+export default api;
 // Função para buscar o cardápio completo
 // Esta função é como o "Garçom" que vai até a "Cozinha" (back-end) pedir o menu
 export const getCardapio = () => {
