@@ -1,19 +1,20 @@
 // Controlador de Comandas (Pedidos)
 // Este arquivo é como o "Chef de Pedidos" que recebe e gerencia os pedidos dos clientes
+const db = require ('../services/database_connection.js');
 
 const { comandas } = require('../services/database_mock.js');
 
 // Função que retorna todas as comandas (pedidos) registradas
-const listarComandas = async (req, res) => {
+const getComandas = async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT * FROM comandas ORDER BY criado_em DESC');
+    const [rows] = await db.query('SELECT * FROM comandas');
 
     // Parse do campo JSON 'itens' (MySQL pode retornar como string, array ou objeto)
     const comandasComItens = rows.map(comanda => ({
       ...comanda,
       itens: Array.isArray(comanda.itens)
         ? comanda.itens
-        : (typeof comanda.itens === 'string' ? JSON.parse(comanda.itens) : comanda.itens)
+        : (typeof comanda.itens === 'string' ? JSON.stringify(comanda.itens) : comanda.itens)
     }));
 
     res.json({
