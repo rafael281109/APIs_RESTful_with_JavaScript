@@ -1,5 +1,6 @@
 // Controlador de Comandas (Pedidos)
 // Este arquivo é como o "Chef de Pedidos" que recebe e gerencia os pedidos dos clientes
+const db = require ('../services/database_connection.js')
 
 const { comandas } = require('../services/database_mock.js');
 
