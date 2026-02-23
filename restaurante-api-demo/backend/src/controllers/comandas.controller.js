@@ -4,7 +4,7 @@
 const { comandas } = require('../services/database_mock.js');
 
 // Função que retorna todas as comandas (pedidos) registradas
-const listarComandas = async (req, res) => {
+const getComandas = async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM comandas ORDER BY criado_em DESC');
 
