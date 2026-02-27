@@ -49,3 +49,10 @@ export const deleteComanda = (id) => {
   // Faz o DELETE para /api/comandas/:id
   return api.delete(`/comandas/${id}`);
 };
+
+export const getUsuarios = () => {
+  console.log('👤 Front-end: "Buscando usuários..."');
+  return api.get('/usuarios');
+};
+
+export default api;

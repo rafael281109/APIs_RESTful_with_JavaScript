@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { getCardapio, createComanda } from './services/api';
 import { PainelCozinha } from './components/PainelCozinha';
 import './App.css';
+import Usuario from "./components/Usuario";
 
 function App() {
   const [cardapio, setCardapio] = useState([]);
@@ -169,10 +170,18 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>🍽️ Cardápio do Restaurante 🍽️</h1>
-      <p className="subtitle">Bem-vindo! Confira nossos deliciosos pratos:</p>
-      
+  <div className="App">
+    <h1>🍽️ Cardápio do Restaurante 🍽️</h1>
+    <p className="subtitle">Bem-vindo! Confira nossos deliciosos pratos:</p>
+
+    {/* EXEMPLO DE USUÁRIO */}
+    <Usuario
+      usuario={{ id: 1, nome: "João Silva", email: "joao@email.com" }}
+      onEdit={(usuario) => console.log("Editar usuário:", usuario)}
+      onDelete={(id) => console.log("Excluir usuário:", id)}
+    />
+
+    {/* resto do seu código continua aqui */}
       {/* Barra de Pesquisa */}
       <div className="barra-pesquisa">
         <div className="pesquisa-container">
